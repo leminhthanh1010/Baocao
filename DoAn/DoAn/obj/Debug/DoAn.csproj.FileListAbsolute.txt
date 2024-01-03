@@ -1,0 +1,12 @@
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.csproj.AssemblyReference.cache
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.CaiDat.resources
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.MainForm.resources
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.NhapMotDay.resources
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.Properties.Resources.resources
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.csproj.GenerateResource.cache
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.csproj.CoreCompileInputs.cache
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\bin\Debug\DoAn.exe.config
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\bin\Debug\DoAn.exe
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\bin\Debug\DoAn.pdb
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.exe
+E:\BaocaoMoPhong\Baocao\DoAn\DoAn\obj\Debug\DoAn.pdb
