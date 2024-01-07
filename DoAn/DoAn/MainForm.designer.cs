@@ -41,14 +41,11 @@ namespace DoAn
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.sortPanel = new System.Windows.Forms.Panel();
-            this.quickSortRadioButton = new System.Windows.Forms.RadioButton();
             this.heapSortRadioButton = new System.Windows.Forms.RadioButton();
             this.sortLabel = new System.Windows.Forms.Label();
             this.insertionSortRadioButton = new System.Windows.Forms.RadioButton();
             this.bubbleSortRadioButton = new System.Windows.Forms.RadioButton();
-            this.interchangeSortRadioButton = new System.Windows.Forms.RadioButton();
             this.selectionSortRadioButton = new System.Windows.Forms.RadioButton();
-            this.mergeSortRadioButton = new System.Windows.Forms.RadioButton();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.thoiGianChay_GiayLabel = new System.Windows.Forms.Label();
@@ -107,34 +104,16 @@ namespace DoAn
             // sortPanel
             // 
             this.sortPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.sortPanel.Controls.Add(this.quickSortRadioButton);
             this.sortPanel.Controls.Add(this.heapSortRadioButton);
             this.sortPanel.Controls.Add(this.sortLabel);
             this.sortPanel.Controls.Add(this.insertionSortRadioButton);
             this.sortPanel.Controls.Add(this.bubbleSortRadioButton);
-            this.sortPanel.Controls.Add(this.interchangeSortRadioButton);
             this.sortPanel.Controls.Add(this.selectionSortRadioButton);
-            this.sortPanel.Controls.Add(this.mergeSortRadioButton);
             this.sortPanel.Location = new System.Drawing.Point(484, 663);
             this.sortPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sortPanel.Name = "sortPanel";
             this.sortPanel.Size = new System.Drawing.Size(500, 235);
             this.sortPanel.TabIndex = 3;
-            // 
-            // quickSortRadioButton
-            // 
-            this.quickSortRadioButton.AutoSize = true;
-            this.quickSortRadioButton.BackColor = System.Drawing.Color.Transparent;
-            this.quickSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quickSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.quickSortRadioButton.Location = new System.Drawing.Point(39, 76);
-            this.quickSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.quickSortRadioButton.Name = "quickSortRadioButton";
-            this.quickSortRadioButton.Size = new System.Drawing.Size(126, 31);
-            this.quickSortRadioButton.TabIndex = 12;
-            this.quickSortRadioButton.Text = "Quick sort";
-            this.quickSortRadioButton.UseVisualStyleBackColor = false;
-            this.quickSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // heapSortRadioButton
             // 
@@ -142,7 +121,7 @@ namespace DoAn
             this.heapSortRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.heapSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.heapSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.heapSortRadioButton.Location = new System.Drawing.Point(39, 153);
+            this.heapSortRadioButton.Location = new System.Drawing.Point(54, 76);
             this.heapSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.heapSortRadioButton.Name = "heapSortRadioButton";
             this.heapSortRadioButton.Size = new System.Drawing.Size(122, 31);
@@ -185,7 +164,7 @@ namespace DoAn
             this.bubbleSortRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.bubbleSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bubbleSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.bubbleSortRadioButton.Location = new System.Drawing.Point(39, 114);
+            this.bubbleSortRadioButton.Location = new System.Drawing.Point(54, 40);
             this.bubbleSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.bubbleSortRadioButton.Name = "bubbleSortRadioButton";
             this.bubbleSortRadioButton.Size = new System.Drawing.Size(137, 31);
@@ -193,21 +172,6 @@ namespace DoAn
             this.bubbleSortRadioButton.Text = "Bubble sort";
             this.bubbleSortRadioButton.UseVisualStyleBackColor = false;
             this.bubbleSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
-            // 
-            // interchangeSortRadioButton
-            // 
-            this.interchangeSortRadioButton.AutoSize = true;
-            this.interchangeSortRadioButton.BackColor = System.Drawing.Color.Transparent;
-            this.interchangeSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.interchangeSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.interchangeSortRadioButton.Location = new System.Drawing.Point(39, 38);
-            this.interchangeSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.interchangeSortRadioButton.Name = "interchangeSortRadioButton";
-            this.interchangeSortRadioButton.Size = new System.Drawing.Size(184, 31);
-            this.interchangeSortRadioButton.TabIndex = 99;
-            this.interchangeSortRadioButton.Text = "Interchange sort";
-            this.interchangeSortRadioButton.UseVisualStyleBackColor = false;
-            this.interchangeSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // selectionSortRadioButton
             // 
@@ -223,21 +187,6 @@ namespace DoAn
             this.selectionSortRadioButton.Text = "Selection sort";
             this.selectionSortRadioButton.UseVisualStyleBackColor = false;
             this.selectionSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
-            // 
-            // mergeSortRadioButton
-            // 
-            this.mergeSortRadioButton.AutoSize = true;
-            this.mergeSortRadioButton.BackColor = System.Drawing.Color.Transparent;
-            this.mergeSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mergeSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.mergeSortRadioButton.Location = new System.Drawing.Point(39, 191);
-            this.mergeSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.mergeSortRadioButton.Name = "mergeSortRadioButton";
-            this.mergeSortRadioButton.Size = new System.Drawing.Size(132, 31);
-            this.mergeSortRadioButton.TabIndex = 7;
-            this.mergeSortRadioButton.Text = "Merge sort";
-            this.mergeSortRadioButton.UseVisualStyleBackColor = false;
-            this.mergeSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // controlPanel
             // 
@@ -878,11 +827,8 @@ namespace DoAn
         #endregion
         private System.Windows.Forms.Panel sortPanel;
         private System.Windows.Forms.Label sortLabel;
-        private System.Windows.Forms.RadioButton mergeSortRadioButton;
         private System.Windows.Forms.RadioButton insertionSortRadioButton;
-        private System.Windows.Forms.RadioButton interchangeSortRadioButton;
         private System.Windows.Forms.RadioButton selectionSortRadioButton;
-        private System.Windows.Forms.RadioButton quickSortRadioButton;
         private System.Windows.Forms.RadioButton heapSortRadioButton;
         private System.Windows.Forms.RadioButton bubbleSortRadioButton;
         private System.Windows.Forms.Panel controlPanel;

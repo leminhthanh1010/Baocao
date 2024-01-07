@@ -29,7 +29,6 @@ namespace DoAn
 
             // radiobutton check
             tangRadioButton.Checked = true;
-            interchangeSortRadioButton.Checked = true;
 
             // menuStrip
             menuStrip.Renderer = new MySR();
@@ -121,11 +120,6 @@ namespace DoAn
                 CodeC.InsertionSort(tang);
                 hamSapXep = InsertionSort;
             }
-            else if (interchangeSortRadioButton.Checked)
-            {
-                CodeC.InterchangeSort(tang);
-                hamSapXep = InterchangeSort;
-            }
             else if (bubbleSortRadioButton.Checked)
             {
                 CodeC.BubbleSort(tang);
@@ -135,16 +129,6 @@ namespace DoAn
             {
                 CodeC.HeapSort();
                 hamSapXep = HeapSort;
-            }
-            else if (quickSortRadioButton.Checked)
-            {
-                CodeC.QuickSort(tang);
-                hamSapXep = QuickSort;
-            }
-            else if (mergeSortRadioButton.Checked)
-            {
-                CodeC.MergeSort();
-                hamSapXep = MergeSort;
             }
         }
 
@@ -190,10 +174,6 @@ namespace DoAn
             if (soPhanTuTextBox.Text != "")
             {
                 int soPhanTu = int.Parse(soPhanTuTextBox.Text);
-                if (mergeSortRadioButton.Checked == true && soPhanTu > 10)
-                {
-                    soPhanTuTextBox.Text = "10";
-                }
                 if (soPhanTu > ThamSo.SoLuongPhanTuMax)
                 {
                     soPhanTuTextBox.Text = ThamSo.SoLuongPhanTuMax.ToString();
@@ -314,7 +294,7 @@ namespace DoAn
                         batDauButton.PerformClick();
                         return true;
                     }
-                    return true;
+                    
                 case Keys.F1:
                     taoNgauNghienButton.PerformClick();
                     return true;
