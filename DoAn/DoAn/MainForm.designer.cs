@@ -55,9 +55,6 @@ namespace DoAn
             this.tamDungButton = new System.Windows.Forms.Button();
             this.controlLabel = new System.Windows.Forms.Label();
             this.debugButton = new System.Windows.Forms.Button();
-            this.debugPanel = new System.Windows.Forms.Panel();
-            this.debugCheckBox = new System.Windows.Forms.CheckBox();
-            this.debugLabel = new System.Windows.Forms.Label();
             this.directionPanel = new System.Windows.Forms.Panel();
             this.giamRadioButton = new System.Windows.Forms.RadioButton();
             this.directionLabel = new System.Windows.Forms.Label();
@@ -89,7 +86,6 @@ namespace DoAn
             this.thoiGianChayTimer = new System.Windows.Forms.Timer(this.components);
             this.sortPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
-            this.debugPanel.SuspendLayout();
             this.directionPanel.SuspendLayout();
             this.statePanel.SuspendLayout();
             this.codePanel.SuspendLayout();
@@ -309,64 +305,6 @@ namespace DoAn
             this.controlLabel.TabIndex = 99;
             this.controlLabel.Text = "Bảng điều khiển";
             // 
-            // debugButton
-            // 
-            this.debugButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.debugButton.Enabled = false;
-            this.debugButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.debugButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.debugButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.debugButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.debugButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.debugButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.debugButton.Location = new System.Drawing.Point(280, 94);
-            this.debugButton.Margin = new System.Windows.Forms.Padding(4);
-            this.debugButton.Name = "debugButton";
-            this.debugButton.Size = new System.Drawing.Size(112, 44);
-            this.debugButton.TabIndex = 3;
-            this.debugButton.Text = "Debug";
-            this.debugButton.UseVisualStyleBackColor = false;
-            this.debugButton.Click += new System.EventHandler(this.DebugButton_Click);
-            // 
-            // debugPanel
-            // 
-            this.debugPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.debugPanel.Controls.Add(this.debugCheckBox);
-            this.debugPanel.Controls.Add(this.debugLabel);
-            this.debugPanel.Location = new System.Drawing.Point(991, 794);
-            this.debugPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.debugPanel.Name = "debugPanel";
-            this.debugPanel.Size = new System.Drawing.Size(159, 105);
-            this.debugPanel.TabIndex = 16;
-            // 
-            // debugCheckBox
-            // 
-            this.debugCheckBox.AutoSize = true;
-            this.debugCheckBox.BackColor = System.Drawing.Color.Transparent;
-            this.debugCheckBox.Font = new System.Drawing.Font("Corbel", 14.25F);
-            this.debugCheckBox.ForeColor = System.Drawing.Color.Gainsboro;
-            this.debugCheckBox.Location = new System.Drawing.Point(23, 46);
-            this.debugCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.debugCheckBox.Name = "debugCheckBox";
-            this.debugCheckBox.Size = new System.Drawing.Size(101, 33);
-            this.debugCheckBox.TabIndex = 1;
-            this.debugCheckBox.Text = "Debug";
-            this.debugCheckBox.UseVisualStyleBackColor = false;
-            this.debugCheckBox.CheckedChanged += new System.EventHandler(this.debugCheckBox_CheckedChanged);
-            // 
-            // debugLabel
-            // 
-            this.debugLabel.AutoSize = true;
-            this.debugLabel.BackColor = System.Drawing.Color.Transparent;
-            this.debugLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.debugLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.debugLabel.Location = new System.Drawing.Point(5, 7);
-            this.debugLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.debugLabel.Name = "debugLabel";
-            this.debugLabel.Size = new System.Drawing.Size(126, 23);
-            this.debugLabel.TabIndex = 99;
-            this.debugLabel.Text = "Chế độ Debug";
-            // 
             // directionPanel
             // 
             this.directionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -573,10 +511,10 @@ namespace DoAn
             this.destroyPanel.Controls.Add(this.cancelSortingButton);
             this.destroyPanel.Controls.Add(this.destroyLabel);
             this.destroyPanel.Controls.Add(this.destroyButton);
-            this.destroyPanel.Location = new System.Drawing.Point(1156, 789);
+            this.destroyPanel.Location = new System.Drawing.Point(992, 789);
             this.destroyPanel.Margin = new System.Windows.Forms.Padding(4);
             this.destroyPanel.Name = "destroyPanel";
-            this.destroyPanel.Size = new System.Drawing.Size(408, 110);
+            this.destroyPanel.Size = new System.Drawing.Size(572, 110);
             this.destroyPanel.TabIndex = 16;
             // 
             // cancelSortingButton
@@ -589,7 +527,7 @@ namespace DoAn
             this.cancelSortingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelSortingButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelSortingButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.cancelSortingButton.Location = new System.Drawing.Point(220, 46);
+            this.cancelSortingButton.Location = new System.Drawing.Point(315, 46);
             this.cancelSortingButton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelSortingButton.Name = "cancelSortingButton";
             this.cancelSortingButton.Size = new System.Drawing.Size(125, 44);
@@ -620,7 +558,7 @@ namespace DoAn
             this.destroyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.destroyButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.destroyButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.destroyButton.Location = new System.Drawing.Point(75, 46);
+            this.destroyButton.Location = new System.Drawing.Point(129, 46);
             this.destroyButton.Margin = new System.Windows.Forms.Padding(4);
             this.destroyButton.Name = "destroyButton";
             this.destroyButton.Size = new System.Drawing.Size(125, 44);
@@ -777,7 +715,6 @@ namespace DoAn
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1564, 894);
             this.Controls.Add(this.sortingPanel);
-            this.Controls.Add(this.debugPanel);
             this.Controls.Add(this.unsortedPanel);
             this.Controls.Add(this.codePanel);
             this.Controls.Add(this.statePanel);
@@ -800,8 +737,6 @@ namespace DoAn
             this.sortPanel.PerformLayout();
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
-            this.debugPanel.ResumeLayout(false);
-            this.debugPanel.PerformLayout();
             this.directionPanel.ResumeLayout(false);
             this.directionPanel.PerformLayout();
             this.statePanel.ResumeLayout(false);
@@ -833,8 +768,6 @@ namespace DoAn
         private System.Windows.Forms.RadioButton bubbleSortRadioButton;
         private System.Windows.Forms.Panel controlPanel;
         private System.Windows.Forms.Label controlLabel;
-        private System.Windows.Forms.Panel debugPanel;
-        private System.Windows.Forms.Label debugLabel;
         private System.Windows.Forms.Panel directionPanel;
         private System.Windows.Forms.Label directionLabel;
         private System.Windows.Forms.Panel statePanel;
@@ -843,7 +776,6 @@ namespace DoAn
         private System.Windows.Forms.Label codeLabel;
         private System.Windows.Forms.Label originalLabel;
         private System.Windows.Forms.Panel unsortedPanel;
-        private System.Windows.Forms.CheckBox debugCheckBox;
         private System.Windows.Forms.RadioButton giamRadioButton;
         private System.Windows.Forms.RadioButton tangRadioButton;
         private System.Windows.Forms.TextBox yTuongTextBox;

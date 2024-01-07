@@ -59,8 +59,8 @@ namespace DoAn
             {
                 // Tông màu tối
                 this.BackColor = sortingPanel.BackColor = speedTrackBar.BackColor = menuStrip.BackColor = Color.FromArgb(51, 51, 51);
-                soPhanTuTextBox.ForeColor =  soPhanTuTextBox.BackColor = unsortedPanel.BackColor = codePanel.BackColor = codeListBox.BackColor = statePanel.BackColor = yTuongTextBox.BackColor = sortPanel.BackColor = directionPanel.BackColor = debugPanel.BackColor = controlPanel.BackColor = initializationPanel.BackColor = destroyPanel.BackColor = Color.FromArgb(60, 60, 60);
-                directionLabel.ForeColor = originalLabel.ForeColor = codeLabel.ForeColor = stateLabel.ForeColor = sortLabel.ForeColor = debugLabel.ForeColor = controlLabel.ForeColor = initializationLabel.ForeColor = destroyLabel.ForeColor = Color.DarkGray;
+                soPhanTuTextBox.ForeColor =  soPhanTuTextBox.BackColor = unsortedPanel.BackColor = codePanel.BackColor = codeListBox.BackColor = statePanel.BackColor = yTuongTextBox.BackColor = sortPanel.BackColor = directionPanel.BackColor = controlPanel.BackColor = initializationPanel.BackColor = destroyPanel.BackColor = Color.FromArgb(60, 60, 60);
+                directionLabel.ForeColor = originalLabel.ForeColor = codeLabel.ForeColor = stateLabel.ForeColor = sortLabel.ForeColor = initializationLabel.ForeColor = destroyLabel.ForeColor = Color.DarkGray;
                 daySoChuaSapXepLabel.ForeColor = Color.Cornsilk;
 
                 List<Button> lst = new List<Button>() { batDauButton, tamDungButton, debugButton, taoNgauNghienButton, nhapTayButton, nhapMotDayButton, destroyButton, cancelSortingButton };
@@ -78,8 +78,8 @@ namespace DoAn
                 // Tông màu sáng
                 this.BackColor = sortingPanel.BackColor = speedTrackBar.BackColor = Color.FromArgb(133, 161, 198);
                 menuStrip.BackColor = Color.FromArgb(191, 191, 191);
-                soPhanTuTextBox.BackColor = unsortedPanel.BackColor = codePanel.BackColor = codeListBox.BackColor = statePanel.BackColor = yTuongTextBox.BackColor = sortPanel.BackColor = directionPanel.BackColor = debugPanel.BackColor = controlPanel.BackColor = initializationPanel.BackColor = destroyPanel.BackColor = Color.FromArgb(177, 210, 251);
-                directionLabel.ForeColor = originalLabel.ForeColor = codeLabel.ForeColor = stateLabel.ForeColor = sortLabel.ForeColor = debugLabel.ForeColor = controlLabel.ForeColor = initializationLabel.ForeColor = destroyLabel.ForeColor = Color.Black;
+                soPhanTuTextBox.BackColor = unsortedPanel.BackColor = codePanel.BackColor = codeListBox.BackColor = statePanel.BackColor = yTuongTextBox.BackColor = sortPanel.BackColor = directionPanel.BackColor = controlPanel.BackColor = initializationPanel.BackColor = destroyPanel.BackColor = Color.FromArgb(177, 210, 251);
+                directionLabel.ForeColor = originalLabel.ForeColor = codeLabel.ForeColor = stateLabel.ForeColor = sortLabel.ForeColor = controlLabel.ForeColor = initializationLabel.ForeColor = destroyLabel.ForeColor = Color.Black;
                 daySoChuaSapXepLabel.ForeColor = Color.Black;
                 List<Button> lst = new List<Button>() { batDauButton, tamDungButton, debugButton, taoNgauNghienButton, nhapTayButton, nhapMotDayButton, destroyButton, cancelSortingButton };
                 foreach (Button bt in lst)
@@ -201,53 +201,6 @@ namespace DoAn
         {
             soPhanTuTextBox.Focus();
         }
-
-        private void DebugButton_Click(object sender, EventArgs e)
-        {
-            //  Nếu đang ở chế độ thường thì chuyển thành Debug
-            if (!debugCheckBox.Checked)
-                debugCheckBox.Checked = true;
-
-            // Chạy code
-            codeListBoxPauseStatus.Set();
-            CodeListBoxIsPause = false;
-        }
-
-        private void debugCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // Chuyển tốc độ nhanh lên khi chạy Debug
-            if (debugCheckBox.Checked)
-            {
-                ThamSo.TocDo = 1;
-                speedTrackBar.Value = speedTrackBar.Maximum - 1;
-                tamDungButton.Enabled = false;
-
-                // Nếu đang tạm dừng khi đang hoán vị thì chạy xong rồi mới vào debug
-                tamDungButton.Enabled = false;
-                Node.pauseStatus.Set(); 
-                Node.IsPause = false;
-            }
-                
-            // Nếu tắt chế độ Debug thì cho code chạy bình thường
-            if (!debugCheckBox.Checked)
-            {
-                codeListBoxPauseStatus.Set();
-                CodeListBoxIsPause = false;
-
-                // tiếp tục chạy
-                tamDungButton.Enabled = true;
-                Node.pauseStatus.Set();    
-                Node.IsPause = false;
-
-                speedTrackBar.Value = speedTrackBar.Maximum/2;
-                TamDung();
-            }
-
-            // Khi chạy debug thì không tính thời gian
-            thoiGianChayTimer.Stop();
-            thoiGianChay_GiayLabel.Text = thoiGianChay_PhutLabel.Text = "00";
-        }
-
         private void speedTrackBar_ValueChanged(object sender, EventArgs e)
         {
             ThamSo.TocDo = speedTrackBar.Maximum - speedTrackBar.Value;

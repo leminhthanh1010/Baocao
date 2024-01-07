@@ -228,22 +228,6 @@ namespace DoAn
             taoNgauNghienButton.Enabled = !IsRun;
             nhapMotDayButton.Enabled = !IsRun;
             nhapTayButton.Enabled = !IsRun;
-            debugButton.Enabled = IsRun;
-
-            // Nếu debug đang bật thì tamdungButton tắt
-            if (!debugCheckBox.Checked)
-                tamDungButton.Enabled = IsRun;
-
-            foreach (Node node in nodeArr)
-            {
-                // tắt chế độ nhập tay khi chạy sắp xếp
-                node.nhapTayTexbox.Enabled = !IsRun;
-                // Chuyển về màu mặc định khi bắt đầu sắp xếp
-                if (IsRun)
-                {
-                    node.BackColor = ThamSo.MauNenNode;
-                }
-            }
             // tắt các biến label đang hiện thị
             foreach (Label label in bienArr.Values)
             {
@@ -414,19 +398,12 @@ namespace DoAn
         }
         #endregion
 
-        #region Chọn từng line trong codeListBox - và chế độ Debug
+        #region Chọn từng line trong codeListBox
         public void ChonDongChoCodeListBox(int viTri)
         {
             Thread.Sleep(ThamSo.TocDo * 30);
             codeListBoxPauseStatus.WaitOne(Timeout.Infinite); // có thể pause mỗi khi chuyển line
             codeListBox.SelectedIndex = viTri;
-            
-            // nếu đang trong chế độ Debug thì dừng sau mỗi câu lệnh chạy xong sẽ dừng lại
-            if (debugCheckBox.Checked)
-            {
-                codeListBoxPauseStatus.Reset();
-                CodeListBoxIsPause = true;
-            }
         }
         #endregion
 
