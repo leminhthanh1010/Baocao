@@ -22,6 +22,37 @@ namespace DoAn
         /// code sort
         /// </summary>
         /// 
+        #region InterchangeSort
+        public static void InterchangeSort(bool tang = true)
+        {
+            string yTuong = @"Xuất phát từ đầu dãy,tìm tất cả các cặp nghịch thế chứa phần tử này, triệt tiêu chúng bằng cách đổi phần tử này với phần tử tương ứng trong cặp nghịch thế .Lặp lại xử lý trên với các phần tử tiếp theo";
+            string[] code = ChuyenText(
+@"Sắp tăng
+void InterchangeSort( int a[], int N)
+{
+    int i, j;
+    for(i = 0; i < N - 1; i++)
+        for(j = i + 1; j < N; j++)
+            if( a[j] < a[i] )
+                Swap( a[i], a[j]);
+}");
+
+            yTuongTextBox.Clear();
+            yTuongTextBox.Text = yTuong;
+            codeListBox.Items.Clear();
+            foreach (string item in code)
+            {
+                codeListBox.Items.Add(item);
+            }
+            if (!tang)
+            {
+                codeListBox.Items[0] = "Sắp giảm";
+                codeListBox.Items[6] = "            if( a[j] > a[i] )";
+            }
+
+        }
+        #endregion
+
         #region SelectionSort
         public static void SelectionSort(bool tang = true)
         {
@@ -94,7 +125,7 @@ void InsertionSort(int a[], int N)
                 codeListBox.Items[9] = "        while((pos >= 0) && (x > a[pos]))";
             }
         }
-        #endregion
+        #endregion      
 
         #region BubbleSort
         public static void BubbleSort(bool tang = true)
@@ -126,66 +157,6 @@ void BubbleSort(int a[], int N)
             }
 
 
-        }
-        #endregion
-
-        #region HeapSort
-        public static void HeapSort(bool tang = true)
-        {
-            string yTuong = @"Khi tìm phần tử nhỏ nhất(lớn nhất) ở bước i, phương pháp SelectionSort không tận dụng được các thông tin đã có được do các phép so sánh ở bước i. Giải thuật HeapSort khắc phục nhược điểm này bằng cách chọn ra được một cấu trúc dữ liệu cho phép tích lũy các thông tin về sự so sánh giá trị các phần tử trong quá trình sắp xếp";
-            string[] code = ChuyenText(
-@"Sắp tăng    
-void HeapSort(int a[], int N)
-{
-    CreateHeap(a,N - 1);
-    int r;
-    r = N - 1;
-    while(r >= 0)
-    {
-        Swap(a[0], a[r]);
-        r--;
-        if(r > 0 )
-            Shift(a,0,r);
-    }
-}
-
-void CreateHeap(int a[], int N)
-{
-    int l;
-    l = N/2 - 1;
-    while(l >= 0)
-    {
-        Shift(a,l,N - 1);
-        l--;
-    }
-}
-
-void Shift(int a[], int l, int r)
-{
-    int i = l;
-    int j = 2*i + 1;
-    while(j <= r)
-    {
-        if(j < r && a[j] < a[j+1]) 
-            j++;
-        if(a[i] < a[j])
-        {
-            Swap(a[i], a[j]);
-            i = j; 
-            j = 2*i + 1;
-        }
-        else return;
-    }
-}
-");
-
-            yTuongTextBox.Clear();
-            yTuongTextBox.Text = yTuong;
-            codeListBox.Items.Clear();
-            foreach (string item in code)
-            {
-                codeListBox.Items.Add(item);
-            }
         }
         #endregion
     }

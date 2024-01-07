@@ -228,6 +228,22 @@ namespace DoAn
             taoNgauNghienButton.Enabled = !IsRun;
             nhapMotDayButton.Enabled = !IsRun;
             nhapTayButton.Enabled = !IsRun;
+            debugButton.Enabled = IsRun;
+
+            // Nếu debug đang bật thì tamdungButton tắt
+            if (!debugCheckBox.Checked)
+                tamDungButton.Enabled = IsRun;
+
+            foreach (Node node in nodeArr)
+            {
+                // tắt chế độ nhập tay khi chạy sắp xếp
+                node.nhapTayTexbox.Enabled = !IsRun;
+                // Chuyển về màu mặc định khi bắt đầu sắp xếp
+                if (IsRun)
+                {
+                    node.BackColor = ThamSo.MauNenNode;
+                }
+            }
             // tắt các biến label đang hiện thị
             foreach (Label label in bienArr.Values)
             {
@@ -398,12 +414,19 @@ namespace DoAn
         }
         #endregion
 
-        #region Chọn từng line trong codeListBox
+        #region Chọn từng line trong codeListBox - và chế độ Debug
         public void ChonDongChoCodeListBox(int viTri)
         {
             Thread.Sleep(ThamSo.TocDo * 30);
             codeListBoxPauseStatus.WaitOne(Timeout.Infinite); // có thể pause mỗi khi chuyển line
             codeListBox.SelectedIndex = viTri;
+            
+            // nếu đang trong chế độ Debug thì dừng sau mỗi câu lệnh chạy xong sẽ dừng lại
+            if (debugCheckBox.Checked)
+            {
+                codeListBoxPauseStatus.Reset();
+                CodeListBoxIsPause = true;
+            }
         }
         #endregion
 
@@ -433,6 +456,97 @@ namespace DoAn
         #endregion
 
         #region Thuật toán
+
+        #region  InterchangeSort
+        public void InterchangeSort()
+        {
+            // Có 2 lỗi xuất hiện nếu k dùng Invoke : 1 - Nếu tạo mới(cấp phát) control bên trong thread con thì việc sắp xếp chạy loạn xạ --> k giải thích đc
+            //                                        2 - Không đc add control vào thread cha bên trong thread con
+            // Để giải quyết việc tạo(cấp phát) 1 control từ thread con và add vào GUI thread :
+            // C1 : Dùng BeginInvoke :  tạo, add, chỉnh prop của control  ---> tất cả phải làm bên trong phần BeginInvoke
+            //                         nhược điểm --> không thể chỉnh prop bên ngoài phần BeginInvoke
+            // C2 : Dùng Invoke : giống với Begin Invoke --> nhưng có thể tùy chỉnh prop bên ngoài phần Invoke
+            //                    Lỗi --> nếu mainForm.Invoke() và thay đổi tốc độ nhiều lần sẽ làm việc hoán vị bị chậm và giật --> chưa giải thích được --> giải quyết : Invoke 1 control thay vì form
+            //                    Lưu ý: k được phép define biến mới bên trong Invoke
+            // C3 : cứ cấp phát và add control thẳng ở GUIthread và dùng thread con tinh chỉnh các property sau
+            // Kết luận : nếu muốn cấp phát và add control ở thread con thì phải dùng Invoke
+            // Ghi chú : vì có 1 số lỗi xảy ra khi chạy nên k dùng invoke
+
+            // Clear yTuongTextBox
+            yTuongTextBox.Clear();
+
+            ChonDongChoCodeListBox(3);
+            int i = 0, j = 0;
+
+            ChonDongChoCodeListBox(4);
+            nodeArr[i].BackColor = ThamSo.MauNodeDangXet;
+            bienArr["i"].Text = "i = " + i;
+            bienArr["i"].Location = new Point(root.X + ThamSo.KhoanCachGiuaCacNode * i, sortingPanel.Height - 50);
+            bienArr["i"].Visible = true;
+
+            for (i = 0; i < nodeArr.Count - 1; i++)
+            {
+                ChonDongChoCodeListBox(5);
+                j = i + 1;
+                bienArr["j"].Text = "j = " + j;
+                bienArr["j"].Location = new Point(root.X + ThamSo.KhoanCachGiuaCacNode * j, sortingPanel.Height - 50);
+                bienArr["j"].Visible = true;
+                if (j != nodeArr.Count)
+                    nodeArr[j].BackColor = ThamSo.MauNodeDangXet;
+
+                for (j = i + 1; j < nodeArr.Count; j++)
+                {
+                    ChonDongChoCodeListBox(6);
+
+                    bool thucHien = false; // dùng để xét tăng/giảm , nếu bằng true thì code sẽ chạy
+                    if (tangRadioButton.Checked == true)
+                    {
+                        if (nodeArr[i].giaTri > nodeArr[j].giaTri)
+                            thucHien = true;
+                    }
+                    else
+                    {
+                        if (nodeArr[i].giaTri < nodeArr[j].giaTri)
+                            thucHien = true;
+                    }
+                    if (thucHien)
+                    {
+                        ChonDongChoCodeListBox(7);
+                        HoanVi2Node(i, j);
+                        // Cập nhật trạng thái của mảng lên yTuongTextBox -- AppendText : thêm dòng mới rồi scroll textbox tới dòng vừa thêm
+                        CapNhatYTuongTextBox(i, j, "i", "j");
+                    }
+
+                    ChonDongChoCodeListBox(5);
+                    bienArr["j"].Text = "j = " + (j + 1);
+                    bienArr["j"].Location = new Point(root.X + ThamSo.KhoanCachGiuaCacNode * (j + 1), sortingPanel.Height - 50);
+                    if (j + 1 != nodeArr.Count)
+                        nodeArr[j + 1].BackColor = ThamSo.MauNodeDangXet;
+                    nodeArr[j].BackColor = ThamSo.MauNenNode;
+
+                }
+
+                ChonDongChoCodeListBox(4);
+                bienArr["i"].Text = "i = " + (i + 1);
+                bienArr["i"].Location = new Point(root.X + ThamSo.KhoanCachGiuaCacNode * (i + 1), sortingPanel.Height - 50);
+                if (i + 1 != nodeArr.Count)
+                    nodeArr[i + 1].BackColor = ThamSo.MauNodeDangXet;
+                // Đổi màu các node đã xét qua
+                nodeArr[i].BackColor = ThamSo.MauNodeDaXetQua;
+            }
+
+            ChonDongChoCodeListBox(4);
+            // Đổi màu node i cuối
+            nodeArr[nodeArr.Count - 1].BackColor = ThamSo.MauNodeDaXetQua;
+
+            // Kết thúc
+            SortRunOrStop(false);
+            if (nodeArr.Count != 0)               // Nếu mảng bị huy trong lúc chạy thì k cần in ra kết quả
+                MessageBox.Show("Sắp xếp hoàn tất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+        #endregion
+
 
         #region  SelectionSort
         public void SelectionSort()
@@ -532,7 +646,6 @@ namespace DoAn
                 MessageBox.Show("Sắp xếp hoàn tất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
         #endregion
 
         #region  InsertionSort
@@ -612,7 +725,7 @@ namespace DoAn
         }
         #endregion
 
-        #region  BubbleSort
+        #region   BubbleSort
         public void BubbleSort()
         {
             // Clear yTuongTextBox
@@ -707,184 +820,6 @@ namespace DoAn
                 MessageBox.Show("Sắp xếp hoàn tất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-        }
-        #endregion      
-
-        #region  HeapSort
-        public void HeapSort()
-        {
-            yTuongTextBox.Clear();
-
-            ChonDongChoCodeListBox(1);
-            ChonDongChoCodeListBox(2);
-            ChonDongChoCodeListBox(3);
-            CreateHeap(nodeArr.Count);
-
-            ChonDongChoCodeListBox(4);
-            ChonDongChoCodeListBox(5);
-            int r = nodeArr.Count - 1;
-
-            ChonDongChoCodeListBox(6);
-            while (r > 0)
-            {
-                ChonDongChoCodeListBox(7);
-                ChonDongChoCodeListBox(8);
-                HoanVi2Node(0, r);
-                Task.WaitAll(hoanVi1Task, hoanVi2Task);
-
-                ChonDongChoCodeListBox(9);
-                bienArr["right"].Text = "right = " + r;
-                bienArr["right"].Location = new Point(root.X + ThamSo.KhoanCachGiuaCacNode * r - 10, 12);
-                bienArr["right"].Visible = true;
-                bienArr["right"].SendToBack();
-                nodeArr[r].BackColor = ThamSo.MauNodeDaXetQua;
-                r--;
-
-
-                ChonDongChoCodeListBox(10);
-                if (r > 0)
-                {
-                    ChonDongChoCodeListBox(11);
-                    Shift(0, r);
-                }
-
-                ChonDongChoCodeListBox(12);
-                ChonDongChoCodeListBox(6);
-            }
-            ChonDongChoCodeListBox(13);
-
-            SortRunOrStop(false);
-            foreach (Node node in nodeArr)
-            {
-                node.BackColor = ThamSo.MauNodeDaXetQua;
-            }
-            if (nodeArr.Count != 0)
-            {
-                MessageBox.Show("Sắp xếp hoàn tất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-        private void CreateHeap(int N)
-        {
-            ChonDongChoCodeListBox(15);
-            ChonDongChoCodeListBox(16);
-            ChonDongChoCodeListBox(17);
-            ChonDongChoCodeListBox(18);
-            int l = N / 2 - 1;
-
-            ChonDongChoCodeListBox(19);
-            while (l >= 0)
-            {
-                ChonDongChoCodeListBox(20);
-                ChonDongChoCodeListBox(21);
-                Shift(l, N - 1);
-
-                ChonDongChoCodeListBox(22);
-                bienArr["left"].Text = "left = " + l;
-                bienArr["left"].Location = new Point(root.X + ThamSo.KhoanCachGiuaCacNode * l - 10, 32);
-                bienArr["left"].Visible = true;
-                bienArr["left"].SendToBack();
-                l--;
-
-                ChonDongChoCodeListBox(23);
-                ChonDongChoCodeListBox(19);
-            }
-
-            ChonDongChoCodeListBox(24);
-        }
-        private void Shift(int l, int r)
-        {
-            ChonDongChoCodeListBox(26);
-            ChonDongChoCodeListBox(27);
-            ChonDongChoCodeListBox(28);
-            ChonDongChoCodeListBox(29);
-            int i = l;
-            int j = 2 * i + 1;
-
-            ChonDongChoCodeListBox(30);
-            while (j <= r)
-            {
-                ChonDongChoCodeListBox(31);
-                ChonDongChoCodeListBox(32);
-                if (tangRadioButton.Checked == true)
-                {
-                    if (j < r && nodeArr[j].giaTri < nodeArr[j + 1].giaTri)
-                    {
-                        ChonDongChoCodeListBox(33);
-                        j++;
-                    }
-                }
-                else
-                {
-                    if (j < r && nodeArr[j].giaTri > nodeArr[j + 1].giaTri)
-                    {
-                        ChonDongChoCodeListBox(33);
-                        j++;
-                    }
-                }
-
-                ChonDongChoCodeListBox(34);
-                if (tangRadioButton.Checked == true)
-                {
-                    if (nodeArr[i].giaTri < nodeArr[j].giaTri)
-                    {
-                        ChonDongChoCodeListBox(35);
-                        ChonDongChoCodeListBox(36);
-                        HoanVi2Node(i, j);
-                        Task.WaitAll(hoanVi1Task, hoanVi2Task);
-                        CapNhatYTuongTextBox(i, j, "i", "j");
-
-                        ChonDongChoCodeListBox(37);
-                        i = j;
-
-                        ChonDongChoCodeListBox(38);
-                        j = 2 * i + 1;
-
-                        ChonDongChoCodeListBox(39);
-                    }
-                    else
-                    {
-                        ChonDongChoCodeListBox(40);
-                        return;
-                    }
-                }
-                else
-                {
-                    if (nodeArr[i].giaTri > nodeArr[j].giaTri)
-                    {
-                        ChonDongChoCodeListBox(35);
-                        ChonDongChoCodeListBox(36);
-                        HoanVi2Node(i, j);
-                        Task.WaitAll(hoanVi1Task, hoanVi2Task);
-                        CapNhatYTuongTextBox(i, j, "i", "j");
-
-                        ChonDongChoCodeListBox(37);
-                        i = j;
-
-                        ChonDongChoCodeListBox(38);
-                        j = 2 * i + 1;
-
-                        ChonDongChoCodeListBox(39);
-                    }
-                    else
-                    {
-                        ChonDongChoCodeListBox(40);
-                        return;
-                    }
-                }
-
-                ChonDongChoCodeListBox(41);
-                ChonDongChoCodeListBox(30);
-            }
-            ChonDongChoCodeListBox(42);
-        }
-
-        List<Node> b = new List<Node>();
-        List<Node> c = new List<Node>();
-        
-        int Min(int a, int b)
-        {
-            if (a > b) return b;
-            else return a;
         }
         #endregion
 

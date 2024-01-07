@@ -41,10 +41,10 @@ namespace DoAn
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.sortPanel = new System.Windows.Forms.Panel();
-            this.heapSortRadioButton = new System.Windows.Forms.RadioButton();
             this.sortLabel = new System.Windows.Forms.Label();
             this.insertionSortRadioButton = new System.Windows.Forms.RadioButton();
             this.bubbleSortRadioButton = new System.Windows.Forms.RadioButton();
+            this.interchangeSortRadioButton = new System.Windows.Forms.RadioButton();
             this.selectionSortRadioButton = new System.Windows.Forms.RadioButton();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,6 +55,9 @@ namespace DoAn
             this.tamDungButton = new System.Windows.Forms.Button();
             this.controlLabel = new System.Windows.Forms.Label();
             this.debugButton = new System.Windows.Forms.Button();
+            this.debugPanel = new System.Windows.Forms.Panel();
+            this.debugCheckBox = new System.Windows.Forms.CheckBox();
+            this.debugLabel = new System.Windows.Forms.Label();
             this.directionPanel = new System.Windows.Forms.Panel();
             this.giamRadioButton = new System.Windows.Forms.RadioButton();
             this.directionLabel = new System.Windows.Forms.Label();
@@ -81,11 +84,10 @@ namespace DoAn
             this.nhapTayButton = new System.Windows.Forms.Button();
             this.taoNgauNghienButton = new System.Windows.Forms.Button();
             this.initializationLabel = new System.Windows.Forms.Label();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.càiĐặtToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.thoiGianChayTimer = new System.Windows.Forms.Timer(this.components);
             this.sortPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
+            this.debugPanel.SuspendLayout();
             this.directionPanel.SuspendLayout();
             this.statePanel.SuspendLayout();
             this.codePanel.SuspendLayout();
@@ -94,16 +96,15 @@ namespace DoAn
             ((System.ComponentModel.ISupportInitialize)(this.speedTrackBar)).BeginInit();
             this.destroyPanel.SuspendLayout();
             this.initializationPanel.SuspendLayout();
-            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // sortPanel
             // 
-            this.sortPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.sortPanel.Controls.Add(this.heapSortRadioButton);
+            this.sortPanel.BackColor = System.Drawing.Color.LightGray;
             this.sortPanel.Controls.Add(this.sortLabel);
             this.sortPanel.Controls.Add(this.insertionSortRadioButton);
             this.sortPanel.Controls.Add(this.bubbleSortRadioButton);
+            this.sortPanel.Controls.Add(this.interchangeSortRadioButton);
             this.sortPanel.Controls.Add(this.selectionSortRadioButton);
             this.sortPanel.Location = new System.Drawing.Point(484, 663);
             this.sortPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -111,27 +112,12 @@ namespace DoAn
             this.sortPanel.Size = new System.Drawing.Size(500, 235);
             this.sortPanel.TabIndex = 3;
             // 
-            // heapSortRadioButton
-            // 
-            this.heapSortRadioButton.AutoSize = true;
-            this.heapSortRadioButton.BackColor = System.Drawing.Color.Transparent;
-            this.heapSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.heapSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.heapSortRadioButton.Location = new System.Drawing.Point(54, 76);
-            this.heapSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.heapSortRadioButton.Name = "heapSortRadioButton";
-            this.heapSortRadioButton.Size = new System.Drawing.Size(122, 31);
-            this.heapSortRadioButton.TabIndex = 11;
-            this.heapSortRadioButton.Text = "Heap sort";
-            this.heapSortRadioButton.UseVisualStyleBackColor = false;
-            this.heapSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
-            // 
             // sortLabel
             // 
             this.sortLabel.AutoSize = true;
             this.sortLabel.BackColor = System.Drawing.Color.Transparent;
             this.sortLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sortLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.sortLabel.ForeColor = System.Drawing.Color.Black;
             this.sortLabel.Location = new System.Drawing.Point(5, 5);
             this.sortLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sortLabel.Name = "sortLabel";
@@ -144,7 +130,7 @@ namespace DoAn
             this.insertionSortRadioButton.AutoSize = true;
             this.insertionSortRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.insertionSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.insertionSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.insertionSortRadioButton.ForeColor = System.Drawing.Color.Black;
             this.insertionSortRadioButton.Location = new System.Drawing.Point(289, 38);
             this.insertionSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.insertionSortRadioButton.Name = "insertionSortRadioButton";
@@ -159,8 +145,8 @@ namespace DoAn
             this.bubbleSortRadioButton.AutoSize = true;
             this.bubbleSortRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.bubbleSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bubbleSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.bubbleSortRadioButton.Location = new System.Drawing.Point(54, 40);
+            this.bubbleSortRadioButton.ForeColor = System.Drawing.Color.Black;
+            this.bubbleSortRadioButton.Location = new System.Drawing.Point(39, 77);
             this.bubbleSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.bubbleSortRadioButton.Name = "bubbleSortRadioButton";
             this.bubbleSortRadioButton.Size = new System.Drawing.Size(137, 31);
@@ -169,12 +155,27 @@ namespace DoAn
             this.bubbleSortRadioButton.UseVisualStyleBackColor = false;
             this.bubbleSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
+            // interchangeSortRadioButton
+            // 
+            this.interchangeSortRadioButton.AutoSize = true;
+            this.interchangeSortRadioButton.BackColor = System.Drawing.Color.Transparent;
+            this.interchangeSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.interchangeSortRadioButton.ForeColor = System.Drawing.Color.Black;
+            this.interchangeSortRadioButton.Location = new System.Drawing.Point(39, 38);
+            this.interchangeSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.interchangeSortRadioButton.Name = "interchangeSortRadioButton";
+            this.interchangeSortRadioButton.Size = new System.Drawing.Size(184, 31);
+            this.interchangeSortRadioButton.TabIndex = 99;
+            this.interchangeSortRadioButton.Text = "Interchange sort";
+            this.interchangeSortRadioButton.UseVisualStyleBackColor = false;
+            this.interchangeSortRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
+            // 
             // selectionSortRadioButton
             // 
             this.selectionSortRadioButton.AutoSize = true;
             this.selectionSortRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.selectionSortRadioButton.Font = new System.Drawing.Font("Corbel", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectionSortRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.selectionSortRadioButton.ForeColor = System.Drawing.Color.Black;
             this.selectionSortRadioButton.Location = new System.Drawing.Point(289, 76);
             this.selectionSortRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.selectionSortRadioButton.Name = "selectionSortRadioButton";
@@ -186,7 +187,7 @@ namespace DoAn
             // 
             // controlPanel
             // 
-            this.controlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.controlPanel.BackColor = System.Drawing.Color.LightGray;
             this.controlPanel.Controls.Add(this.label4);
             this.controlPanel.Controls.Add(this.thoiGianChay_GiayLabel);
             this.controlPanel.Controls.Add(this.thoiGianChay_PhutLabel);
@@ -207,7 +208,7 @@ namespace DoAn
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(293, 48);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
@@ -220,7 +221,7 @@ namespace DoAn
             this.thoiGianChay_GiayLabel.AutoSize = true;
             this.thoiGianChay_GiayLabel.BackColor = System.Drawing.Color.Transparent;
             this.thoiGianChay_GiayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.thoiGianChay_GiayLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.thoiGianChay_GiayLabel.ForeColor = System.Drawing.Color.Black;
             this.thoiGianChay_GiayLabel.Location = new System.Drawing.Point(304, 48);
             this.thoiGianChay_GiayLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.thoiGianChay_GiayLabel.Name = "thoiGianChay_GiayLabel";
@@ -233,7 +234,7 @@ namespace DoAn
             this.thoiGianChay_PhutLabel.AutoSize = true;
             this.thoiGianChay_PhutLabel.BackColor = System.Drawing.Color.Transparent;
             this.thoiGianChay_PhutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.thoiGianChay_PhutLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.thoiGianChay_PhutLabel.ForeColor = System.Drawing.Color.Black;
             this.thoiGianChay_PhutLabel.Location = new System.Drawing.Point(264, 48);
             this.thoiGianChay_PhutLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.thoiGianChay_PhutLabel.Name = "thoiGianChay_PhutLabel";
@@ -245,25 +246,25 @@ namespace DoAn
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(71, 48);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 24);
+            this.label1.Size = new System.Drawing.Size(183, 25);
             this.label1.TabIndex = 105;
             this.label1.Text = "Thời gian thực hiện:";
             // 
             // batDauButton
             // 
-            this.batDauButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.batDauButton.BackColor = System.Drawing.Color.LightGray;
             this.batDauButton.Enabled = false;
             this.batDauButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.batDauButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.batDauButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.batDauButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.batDauButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.batDauButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.batDauButton.ForeColor = System.Drawing.Color.Black;
             this.batDauButton.Location = new System.Drawing.Point(17, 94);
             this.batDauButton.Margin = new System.Windows.Forms.Padding(4);
             this.batDauButton.Name = "batDauButton";
@@ -275,14 +276,14 @@ namespace DoAn
             // 
             // tamDungButton
             // 
-            this.tamDungButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.tamDungButton.BackColor = System.Drawing.Color.LightGray;
             this.tamDungButton.Enabled = false;
             this.tamDungButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.tamDungButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.tamDungButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.tamDungButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tamDungButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tamDungButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.tamDungButton.ForeColor = System.Drawing.Color.Black;
             this.tamDungButton.Location = new System.Drawing.Point(151, 94);
             this.tamDungButton.Margin = new System.Windows.Forms.Padding(4);
             this.tamDungButton.Name = "tamDungButton";
@@ -297,7 +298,7 @@ namespace DoAn
             this.controlLabel.AutoSize = true;
             this.controlLabel.BackColor = System.Drawing.Color.Transparent;
             this.controlLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.controlLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.controlLabel.ForeColor = System.Drawing.Color.Black;
             this.controlLabel.Location = new System.Drawing.Point(7, 6);
             this.controlLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.controlLabel.Name = "controlLabel";
@@ -305,9 +306,67 @@ namespace DoAn
             this.controlLabel.TabIndex = 99;
             this.controlLabel.Text = "Bảng điều khiển";
             // 
+            // debugButton
+            // 
+            this.debugButton.BackColor = System.Drawing.Color.LightGray;
+            this.debugButton.Enabled = false;
+            this.debugButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.debugButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.debugButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.debugButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.debugButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.debugButton.ForeColor = System.Drawing.Color.Black;
+            this.debugButton.Location = new System.Drawing.Point(280, 94);
+            this.debugButton.Margin = new System.Windows.Forms.Padding(4);
+            this.debugButton.Name = "debugButton";
+            this.debugButton.Size = new System.Drawing.Size(112, 44);
+            this.debugButton.TabIndex = 3;
+            this.debugButton.Text = "Debug";
+            this.debugButton.UseVisualStyleBackColor = false;
+            this.debugButton.Click += new System.EventHandler(this.DebugButton_Click);
+            // 
+            // debugPanel
+            // 
+            this.debugPanel.BackColor = System.Drawing.Color.LightGray;
+            this.debugPanel.Controls.Add(this.debugCheckBox);
+            this.debugPanel.Controls.Add(this.debugLabel);
+            this.debugPanel.Location = new System.Drawing.Point(991, 794);
+            this.debugPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.debugPanel.Name = "debugPanel";
+            this.debugPanel.Size = new System.Drawing.Size(159, 105);
+            this.debugPanel.TabIndex = 16;
+            // 
+            // debugCheckBox
+            // 
+            this.debugCheckBox.AutoSize = true;
+            this.debugCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.debugCheckBox.Font = new System.Drawing.Font("Corbel", 14.25F);
+            this.debugCheckBox.ForeColor = System.Drawing.Color.Black;
+            this.debugCheckBox.Location = new System.Drawing.Point(23, 46);
+            this.debugCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.debugCheckBox.Name = "debugCheckBox";
+            this.debugCheckBox.Size = new System.Drawing.Size(101, 33);
+            this.debugCheckBox.TabIndex = 1;
+            this.debugCheckBox.Text = "Debug";
+            this.debugCheckBox.UseVisualStyleBackColor = false;
+            this.debugCheckBox.CheckedChanged += new System.EventHandler(this.debugCheckBox_CheckedChanged);
+            // 
+            // debugLabel
+            // 
+            this.debugLabel.AutoSize = true;
+            this.debugLabel.BackColor = System.Drawing.Color.Transparent;
+            this.debugLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.debugLabel.ForeColor = System.Drawing.Color.Black;
+            this.debugLabel.Location = new System.Drawing.Point(5, 7);
+            this.debugLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.debugLabel.Name = "debugLabel";
+            this.debugLabel.Size = new System.Drawing.Size(126, 23);
+            this.debugLabel.TabIndex = 99;
+            this.debugLabel.Text = "Chế độ Debug";
+            // 
             // directionPanel
             // 
-            this.directionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.directionPanel.BackColor = System.Drawing.Color.LightGray;
             this.directionPanel.Controls.Add(this.giamRadioButton);
             this.directionPanel.Controls.Add(this.directionLabel);
             this.directionPanel.Controls.Add(this.tangRadioButton);
@@ -322,7 +381,7 @@ namespace DoAn
             this.giamRadioButton.AutoSize = true;
             this.giamRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.giamRadioButton.Font = new System.Drawing.Font("Corbel", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.giamRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.giamRadioButton.ForeColor = System.Drawing.Color.Black;
             this.giamRadioButton.Location = new System.Drawing.Point(23, 71);
             this.giamRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.giamRadioButton.Name = "giamRadioButton";
@@ -337,7 +396,7 @@ namespace DoAn
             this.directionLabel.AutoSize = true;
             this.directionLabel.BackColor = System.Drawing.Color.Transparent;
             this.directionLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.directionLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.directionLabel.ForeColor = System.Drawing.Color.Black;
             this.directionLabel.Location = new System.Drawing.Point(5, 5);
             this.directionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.directionLabel.Name = "directionLabel";
@@ -350,7 +409,7 @@ namespace DoAn
             this.tangRadioButton.AutoSize = true;
             this.tangRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.tangRadioButton.Font = new System.Drawing.Font("Corbel", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tangRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.tangRadioButton.ForeColor = System.Drawing.Color.Black;
             this.tangRadioButton.Location = new System.Drawing.Point(23, 37);
             this.tangRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.tangRadioButton.Name = "tangRadioButton";
@@ -362,7 +421,7 @@ namespace DoAn
             // 
             // statePanel
             // 
-            this.statePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.statePanel.BackColor = System.Drawing.Color.LightGray;
             this.statePanel.Controls.Add(this.yTuongTextBox);
             this.statePanel.Controls.Add(this.stateLabel);
             this.statePanel.Location = new System.Drawing.Point(484, 450);
@@ -374,10 +433,10 @@ namespace DoAn
             // 
             // yTuongTextBox
             // 
-            this.yTuongTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.yTuongTextBox.BackColor = System.Drawing.Color.LightGray;
             this.yTuongTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.yTuongTextBox.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.yTuongTextBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.yTuongTextBox.ForeColor = System.Drawing.Color.Black;
             this.yTuongTextBox.Location = new System.Drawing.Point(12, 38);
             this.yTuongTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.yTuongTextBox.Multiline = true;
@@ -392,7 +451,7 @@ namespace DoAn
             this.stateLabel.AutoSize = true;
             this.stateLabel.BackColor = System.Drawing.Color.Transparent;
             this.stateLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stateLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.stateLabel.ForeColor = System.Drawing.Color.Black;
             this.stateLabel.Location = new System.Drawing.Point(5, 5);
             this.stateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.stateLabel.Name = "stateLabel";
@@ -402,7 +461,7 @@ namespace DoAn
             // 
             // codePanel
             // 
-            this.codePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.codePanel.BackColor = System.Drawing.Color.LightGray;
             this.codePanel.Controls.Add(this.codeListBox);
             this.codePanel.Controls.Add(this.codeLabel);
             this.codePanel.Location = new System.Drawing.Point(0, 450);
@@ -414,10 +473,10 @@ namespace DoAn
             // 
             // codeListBox
             // 
-            this.codeListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.codeListBox.BackColor = System.Drawing.Color.LightGray;
             this.codeListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.codeListBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codeListBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.codeListBox.ForeColor = System.Drawing.Color.Black;
             this.codeListBox.FormattingEnabled = true;
             this.codeListBox.ItemHeight = 24;
             this.codeListBox.Location = new System.Drawing.Point(11, 38);
@@ -431,7 +490,7 @@ namespace DoAn
             this.codeLabel.AutoSize = true;
             this.codeLabel.BackColor = System.Drawing.Color.Transparent;
             this.codeLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codeLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.codeLabel.ForeColor = System.Drawing.Color.Black;
             this.codeLabel.Location = new System.Drawing.Point(5, 5);
             this.codeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.codeLabel.Name = "codeLabel";
@@ -444,7 +503,7 @@ namespace DoAn
             this.originalLabel.AutoSize = true;
             this.originalLabel.BackColor = System.Drawing.Color.Transparent;
             this.originalLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.originalLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.originalLabel.ForeColor = System.Drawing.Color.Black;
             this.originalLabel.Location = new System.Drawing.Point(5, 5);
             this.originalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.originalLabel.Name = "originalLabel";
@@ -454,7 +513,7 @@ namespace DoAn
             // 
             // unsortedPanel
             // 
-            this.unsortedPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.unsortedPanel.BackColor = System.Drawing.Color.LightGray;
             this.unsortedPanel.Controls.Add(this.originalLabel);
             this.unsortedPanel.Location = new System.Drawing.Point(0, 356);
             this.unsortedPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -465,23 +524,23 @@ namespace DoAn
             // 
             // sortingPanel
             // 
-            this.sortingPanel.AutoSize = true;
-            this.sortingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.sortingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.sortingPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sortingPanel.Controls.Add(this.label2);
             this.sortingPanel.Controls.Add(this.speedTrackBar);
-            this.sortingPanel.Location = new System.Drawing.Point(0, 33);
+            this.sortingPanel.Location = new System.Drawing.Point(0, -1);
             this.sortingPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sortingPanel.Name = "sortingPanel";
-            this.sortingPanel.Size = new System.Drawing.Size(1565, 314);
+            this.sortingPanel.Size = new System.Drawing.Size(1565, 358);
             this.sortingPanel.TabIndex = 21;
             this.sortingPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseClick);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.label2.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(1489, 10);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
@@ -507,27 +566,27 @@ namespace DoAn
             // 
             // destroyPanel
             // 
-            this.destroyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.destroyPanel.BackColor = System.Drawing.Color.LightGray;
             this.destroyPanel.Controls.Add(this.cancelSortingButton);
             this.destroyPanel.Controls.Add(this.destroyLabel);
             this.destroyPanel.Controls.Add(this.destroyButton);
-            this.destroyPanel.Location = new System.Drawing.Point(992, 789);
+            this.destroyPanel.Location = new System.Drawing.Point(1156, 789);
             this.destroyPanel.Margin = new System.Windows.Forms.Padding(4);
             this.destroyPanel.Name = "destroyPanel";
-            this.destroyPanel.Size = new System.Drawing.Size(572, 110);
+            this.destroyPanel.Size = new System.Drawing.Size(408, 110);
             this.destroyPanel.TabIndex = 16;
             // 
             // cancelSortingButton
             // 
-            this.cancelSortingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.cancelSortingButton.BackColor = System.Drawing.Color.LightGray;
             this.cancelSortingButton.Enabled = false;
             this.cancelSortingButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cancelSortingButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.cancelSortingButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.cancelSortingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelSortingButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelSortingButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.cancelSortingButton.Location = new System.Drawing.Point(315, 46);
+            this.cancelSortingButton.ForeColor = System.Drawing.Color.Black;
+            this.cancelSortingButton.Location = new System.Drawing.Point(220, 46);
             this.cancelSortingButton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelSortingButton.Name = "cancelSortingButton";
             this.cancelSortingButton.Size = new System.Drawing.Size(125, 44);
@@ -541,7 +600,7 @@ namespace DoAn
             this.destroyLabel.AutoSize = true;
             this.destroyLabel.BackColor = System.Drawing.Color.Transparent;
             this.destroyLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destroyLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.destroyLabel.ForeColor = System.Drawing.Color.Black;
             this.destroyLabel.Location = new System.Drawing.Point(7, 6);
             this.destroyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.destroyLabel.Name = "destroyLabel";
@@ -551,14 +610,14 @@ namespace DoAn
             // 
             // destroyButton
             // 
-            this.destroyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.destroyButton.BackColor = System.Drawing.Color.LightGray;
             this.destroyButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.destroyButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.destroyButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.destroyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.destroyButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destroyButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.destroyButton.Location = new System.Drawing.Point(129, 46);
+            this.destroyButton.ForeColor = System.Drawing.Color.Black;
+            this.destroyButton.Location = new System.Drawing.Point(75, 46);
             this.destroyButton.Margin = new System.Windows.Forms.Padding(4);
             this.destroyButton.Name = "destroyButton";
             this.destroyButton.Size = new System.Drawing.Size(125, 44);
@@ -569,7 +628,7 @@ namespace DoAn
             // 
             // initializationPanel
             // 
-            this.initializationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.initializationPanel.BackColor = System.Drawing.Color.LightGray;
             this.initializationPanel.Controls.Add(this.nhapMotDayButton);
             this.initializationPanel.Controls.Add(this.soPhanTuLabel);
             this.initializationPanel.Controls.Add(this.soPhanTuTextBox);
@@ -584,13 +643,13 @@ namespace DoAn
             // 
             // nhapMotDayButton
             // 
-            this.nhapMotDayButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.nhapMotDayButton.BackColor = System.Drawing.Color.LightGray;
             this.nhapMotDayButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.nhapMotDayButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.nhapMotDayButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.nhapMotDayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nhapMotDayButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nhapMotDayButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nhapMotDayButton.ForeColor = System.Drawing.Color.Black;
             this.nhapMotDayButton.Location = new System.Drawing.Point(280, 94);
             this.nhapMotDayButton.Margin = new System.Windows.Forms.Padding(4);
             this.nhapMotDayButton.Name = "nhapMotDayButton";
@@ -604,21 +663,21 @@ namespace DoAn
             // 
             this.soPhanTuLabel.AutoSize = true;
             this.soPhanTuLabel.BackColor = System.Drawing.Color.Transparent;
-            this.soPhanTuLabel.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.soPhanTuLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.soPhanTuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.soPhanTuLabel.ForeColor = System.Drawing.Color.Black;
             this.soPhanTuLabel.Location = new System.Drawing.Point(108, 44);
             this.soPhanTuLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.soPhanTuLabel.Name = "soPhanTuLabel";
-            this.soPhanTuLabel.Size = new System.Drawing.Size(107, 24);
+            this.soPhanTuLabel.Size = new System.Drawing.Size(113, 25);
             this.soPhanTuLabel.TabIndex = 99;
             this.soPhanTuLabel.Text = "Số phần tử:";
             // 
             // soPhanTuTextBox
             // 
-            this.soPhanTuTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.soPhanTuTextBox.BackColor = System.Drawing.Color.LightGray;
             this.soPhanTuTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.soPhanTuTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.soPhanTuTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.soPhanTuTextBox.ForeColor = System.Drawing.Color.Black;
             this.soPhanTuTextBox.Location = new System.Drawing.Point(232, 41);
             this.soPhanTuTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.soPhanTuTextBox.MaxLength = 2;
@@ -633,13 +692,13 @@ namespace DoAn
             // 
             // nhapTayButton
             // 
-            this.nhapTayButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.nhapTayButton.BackColor = System.Drawing.Color.LightGray;
             this.nhapTayButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.nhapTayButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.nhapTayButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.nhapTayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nhapTayButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nhapTayButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nhapTayButton.ForeColor = System.Drawing.Color.Black;
             this.nhapTayButton.Location = new System.Drawing.Point(151, 92);
             this.nhapTayButton.Margin = new System.Windows.Forms.Padding(4);
             this.nhapTayButton.Name = "nhapTayButton";
@@ -651,13 +710,13 @@ namespace DoAn
             // 
             // taoNgauNghienButton
             // 
-            this.taoNgauNghienButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.taoNgauNghienButton.BackColor = System.Drawing.Color.LightGray;
             this.taoNgauNghienButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.taoNgauNghienButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.taoNgauNghienButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.taoNgauNghienButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.taoNgauNghienButton.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.taoNgauNghienButton.ForeColor = System.Drawing.Color.GhostWhite;
+            this.taoNgauNghienButton.ForeColor = System.Drawing.Color.Black;
             this.taoNgauNghienButton.Location = new System.Drawing.Point(17, 94);
             this.taoNgauNghienButton.Margin = new System.Windows.Forms.Padding(4);
             this.taoNgauNghienButton.Name = "taoNgauNghienButton";
@@ -672,35 +731,13 @@ namespace DoAn
             this.initializationLabel.AutoSize = true;
             this.initializationLabel.BackColor = System.Drawing.Color.Transparent;
             this.initializationLabel.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.initializationLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.initializationLabel.ForeColor = System.Drawing.Color.Black;
             this.initializationLabel.Location = new System.Drawing.Point(8, 9);
             this.initializationLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.initializationLabel.Name = "initializationLabel";
             this.initializationLabel.Size = new System.Drawing.Size(82, 23);
             this.initializationLabel.TabIndex = 99;
             this.initializationLabel.Text = "Khởi tạo";
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.menuStrip.ImageScalingSize = new System.Drawing.Size(0, 0);
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.càiĐặtToolStripMenuItem1});
-            this.menuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip.Size = new System.Drawing.Size(1564, 28);
-            this.menuStrip.TabIndex = 23;
-            this.menuStrip.Text = "Thanh Menu";
-            // 
-            // càiĐặtToolStripMenuItem1
-            // 
-            this.càiĐặtToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-            this.càiĐặtToolStripMenuItem1.Name = "càiĐặtToolStripMenuItem1";
-            this.càiĐặtToolStripMenuItem1.Size = new System.Drawing.Size(70, 24);
-            this.càiĐặtToolStripMenuItem1.Text = "Cài đặt";
-            this.càiĐặtToolStripMenuItem1.Click += new System.EventHandler(this.càiĐặtToolStripMenuItem_Click);
             // 
             // thoiGianChayTimer
             // 
@@ -715,6 +752,7 @@ namespace DoAn
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1564, 894);
             this.Controls.Add(this.sortingPanel);
+            this.Controls.Add(this.debugPanel);
             this.Controls.Add(this.unsortedPanel);
             this.Controls.Add(this.codePanel);
             this.Controls.Add(this.statePanel);
@@ -723,10 +761,8 @@ namespace DoAn
             this.Controls.Add(this.controlPanel);
             this.Controls.Add(this.initializationPanel);
             this.Controls.Add(this.sortPanel);
-            this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -737,6 +773,8 @@ namespace DoAn
             this.sortPanel.PerformLayout();
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
+            this.debugPanel.ResumeLayout(false);
+            this.debugPanel.PerformLayout();
             this.directionPanel.ResumeLayout(false);
             this.directionPanel.PerformLayout();
             this.statePanel.ResumeLayout(false);
@@ -752,10 +790,7 @@ namespace DoAn
             this.destroyPanel.PerformLayout();
             this.initializationPanel.ResumeLayout(false);
             this.initializationPanel.PerformLayout();
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -763,11 +798,13 @@ namespace DoAn
         private System.Windows.Forms.Panel sortPanel;
         private System.Windows.Forms.Label sortLabel;
         private System.Windows.Forms.RadioButton insertionSortRadioButton;
+        private System.Windows.Forms.RadioButton interchangeSortRadioButton;
         private System.Windows.Forms.RadioButton selectionSortRadioButton;
-        private System.Windows.Forms.RadioButton heapSortRadioButton;
         private System.Windows.Forms.RadioButton bubbleSortRadioButton;
         private System.Windows.Forms.Panel controlPanel;
         private System.Windows.Forms.Label controlLabel;
+        private System.Windows.Forms.Panel debugPanel;
+        private System.Windows.Forms.Label debugLabel;
         private System.Windows.Forms.Panel directionPanel;
         private System.Windows.Forms.Label directionLabel;
         private System.Windows.Forms.Panel statePanel;
@@ -776,6 +813,7 @@ namespace DoAn
         private System.Windows.Forms.Label codeLabel;
         private System.Windows.Forms.Label originalLabel;
         private System.Windows.Forms.Panel unsortedPanel;
+        private System.Windows.Forms.CheckBox debugCheckBox;
         private System.Windows.Forms.RadioButton giamRadioButton;
         private System.Windows.Forms.RadioButton tangRadioButton;
         private System.Windows.Forms.TextBox yTuongTextBox;
@@ -795,9 +833,7 @@ namespace DoAn
         private System.Windows.Forms.Button taoNgauNghienButton;
         private System.Windows.Forms.Button debugButton;
         private System.Windows.Forms.Label initializationLabel;
-        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.Button nhapMotDayButton;
-        private System.Windows.Forms.ToolStripMenuItem càiĐặtToolStripMenuItem1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label thoiGianChay_GiayLabel;
         private System.Windows.Forms.Label thoiGianChay_PhutLabel;
