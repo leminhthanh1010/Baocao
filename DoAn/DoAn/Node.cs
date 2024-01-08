@@ -52,7 +52,7 @@ namespace DoAn
 
         private void Node_GotFocus(object sender, EventArgs e)
         {
-            if (nhapTayTexbox.Enabled == true)   // Nếu textbox bị tắt (khi node đang sắp xếp) thì texbox không đc bật lên để sửa
+            if (nhapTayTexbox.Enabled == true)   // Nếu textbox bị tắt (khi node đang sắp xếp) thì textbox không đc bật lên để sửa
             {
                 nhapTayTexbox.BackColor = this.BackColor;
                 nhapTayTexbox.Visible = true;
